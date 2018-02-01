@@ -3,7 +3,7 @@ const resetBtn = document.querySelector('#reset'); // querySelector means just o
 const boxes = document.querySelectorAll('.box');   // vs querySelectorAll
 
 //eventListeners
-boxes.forEach(function(box, index){
+boxes.forEach(function(box, index){ //note the use of an inline function
     box.addEventListener('click', toggleRed);
 })
 resetBtn.addEventListener('click', clearGrid)
@@ -15,7 +15,7 @@ function toggleRed(e) {
 }
 
 function clearGrid(e) {
-    boxes.forEach((box, index) => {
+    boxes.forEach((box, index) => { //note the use of a 'fat arrow' function
         box.classList.remove('red');
     });
 }

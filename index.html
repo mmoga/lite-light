@@ -14,9 +14,21 @@
 <body class="container">
     <header>
         <h1 class="title-copy">Lite Light
-            <sup>©</sup>
+            <sup style="font-size: 50%;">©</sup>
         </h1>
+        <form id="grid-size">
+            <label>
+                <input type="radio" name="size" id="size-6" value="6" checked="checked">
+                6x6
+            </label>
+            <label>
+                <input type="radio" name="size" id="size-10" value="10">
+                10x10
+            </label>
+            <button type="submit" class="btn btn-primary btn-sm">Re-size Grid</button>
+        </form>
     </header>
+
     <main>
         <div class="row">
             <div class="col-md-12">

@@ -1,9 +1,11 @@
 //variables
-const resetBtn = document.querySelector('#reset');
-const box = document.querySelector('.box');
+const resetBtn = document.querySelector('#reset'); // querySelector means just one
+const boxes = document.querySelectorAll('.box');   // vs querySelectorAll
 
 //eventListeners
-box.addEventListener('click', toggleRed);
+boxes.forEach(function(box, index){
+    box.addEventListener('click', toggleRed);
+})
 resetBtn.addEventListener('click', clearGrid)
 
 //functions

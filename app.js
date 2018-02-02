@@ -11,15 +11,25 @@ gridSizeForm.addEventListener('submit', changeGrid);
 changeGrid();
 
 //functions
-function toggleRed(e) {
-    const element = e.target;
-    element.classList.toggle('red');
+function toggleColor(e) {
+ if (e.target.classList.contains("red")) {
+     e.target.classList.replace("red" , "blue");
+ } else if (e.target.classList.contains("blue")) {
+    e.target.classList.replace("blue", "white");
+ } else {
+     e.target.classList.replace("white" , "red")
+ }
 }
+
+// function toggleColor(e) {
+//     const element = e.target;
+//     element.classList.toggle('red');
+// }
 
 function clearGrid(e) {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => { //note the use of an 'arrow' function
-        box.classList.remove('red');
+        box.classList.remove('red', 'blue');
     });
 }
 
@@ -51,8 +61,8 @@ function makeGrid(size) {
         // make 6 divs with class of box inside of col-md-12
         for (let i = 0; i < size; i += 1) {
             const box = document.createElement('div');
-            box.classList.add('box');
-            box.addEventListener('click', toggleRed);
+            box.classList.add('box' , 'white');
+            box.addEventListener('click', toggleColor);
             column.appendChild(box);
         }
         rows.push(row); // behavior to push value into array 'rows'

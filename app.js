@@ -29,16 +29,31 @@ function changeGrid(e) {
     const grid = makeGrid(gridSizeValue);
     // set the main to the grid
     main.innerHTML = ''; // this clears the main area (deletes the grid)
-    main.appendChild(grid);
+    grid.forEach((row) => {
+        main.appendChild(row);
+    });
 }
 
 function makeGrid(size) {
-    const element = document.createElement('h1');
-    element.textContent = 'GRID!!!!';
-    return element;
-    // make the grid
+    const rows = [];
+    for (let i = 0; i < size; i += 1) {
+        // make the grid
         // make a div with class of row
+        const row = document.createElement('div'); // create the row div
+        row.classList.add('row'); //add .row to the div we've just created
         // make a div with class col-md-12 inside of row
+        const column = document.createElement('div'); // create the column div
+        column.classList.add('col-md-12'); // add .col-md-12 to the div we've just created
+        row.appendChild(column);
         // make 6 divs with class of box inside of col-md-12
-        // copy and pasted 6 times
+        for (let i = 0; i < size; i += 1) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.addEventListener('click', toggleRed);
+            column.appendChild(box);
+        }
+        rows.push(row); // behavior to push value into array 'rows'
+    }
+    // copy and pasted 6 times
+    return rows;
 }

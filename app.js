@@ -1,15 +1,14 @@
 //variables
 const resetBtn = document.querySelector('#reset'); // querySelector means just one
-const boxes = document.querySelectorAll('.box');   // vs querySelectorAll
 const gridSizeForm = document.querySelector('#grid-size');
 const main = document.querySelector('main');
 
 //eventListeners
-boxes.forEach(function(box, index){ //note the use of a function expression (inline)
-    box.addEventListener('click', toggleRed);
-});
 resetBtn.addEventListener('click', clearGrid);
 gridSizeForm.addEventListener('submit', changeGrid);
+
+//initialized or started
+changeGrid();
 
 //functions
 function toggleRed(e) {
@@ -18,13 +17,17 @@ function toggleRed(e) {
 }
 
 function clearGrid(e) {
+    const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => { //note the use of an 'arrow' function
         box.classList.remove('red');
     });
 }
 
 function changeGrid(e) {
-    e.preventDefault();
+    if (e) {
+        e.preventDefault();
+    }
+    
     const gridSizeValue = +gridSizeForm.querySelector('input:checked').value;
     const grid = makeGrid(gridSizeValue);
     // set the main to the grid

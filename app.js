@@ -2,6 +2,7 @@
 const resetBtn = document.querySelector('#reset'); // querySelector means just one
 const gridSizeForm = document.querySelector('#grid-size');
 const main = document.querySelector('main');
+const colorPicker = document.querySelector('#color-choice');
 
 //eventListeners
 resetBtn.addEventListener('click', clearGrid);
@@ -10,15 +11,14 @@ gridSizeForm.addEventListener('submit', changeGrid);
 //initialized or started
 changeGrid();
 
-//functions
-function toggleColor(e) {
- if (e.target.classList.contains("red")) {
-     e.target.classList.replace("red" , "blue");
- } else if (e.target.classList.contains("blue")) {
-    e.target.classList.replace("blue", "white");
- } else {
-     e.target.classList.replace("white" , "red")
- }
+//function
+function changeBoxColor(e) {
+    const element = e.target; //whatever was clicked (where the event originated)
+    if (element.style.backgroundColor) {
+        element.style.backgroundColor = '';
+        return;
+    }
+    element.style.backgroundColor = colorPicker.value;
 }
 
 // function toggleColor(e) {
@@ -29,7 +29,7 @@ function toggleColor(e) {
 function clearGrid(e) {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => { //note the use of an 'arrow' function
-        box.classList.remove('red', 'blue');
+        box.style.backgroundColor = '#ffffff';
     });
 }
 
@@ -61,8 +61,8 @@ function makeGrid(size) {
         // make 6 divs with class of box inside of col-md-12
         for (let i = 0; i < size; i += 1) {
             const box = document.createElement('div');
-            box.classList.add('box' , 'white');
-            box.addEventListener('click', toggleColor);
+            box.classList.add('box');
+            box.addEventListener('click', changeBoxColor);
             column.appendChild(box);
         }
         rows.push(row); // behavior to push value into array 'rows'
